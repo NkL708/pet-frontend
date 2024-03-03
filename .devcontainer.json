@@ -1,6 +1,6 @@
 {
 	"name": "Angular dev container",
-	"dockerComposeFile": "../docker-compose.yml",
+	"dockerComposeFile": "../docker-compose.dev.yml",
 	"service": "frontend",
 	"customizations": {
 		"vscode": {
