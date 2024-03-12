@@ -5,8 +5,9 @@ RUN deluser --remove-home node && \
     adduser -D -G nkl -s /bin/zsh nkl && \
     chown -R nkl:nkl /home/nkl
 USER nkl
-COPY package*.json yarn.lock angular.json tsconfig*.json ./
+COPY package*.json yarn.lock angular.json tsconfig*.json custom-webpack.config.js ./
 RUN yarn install
+ENV PATH="./node_modules/.bin:$PATH"
 COPY --chown=nkl:nkl src ./src
 RUN yarn ng build
 
