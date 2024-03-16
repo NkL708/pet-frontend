@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
@@ -6,7 +12,7 @@ import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
   templateUrl: "./svg-icon.component.html",
   styleUrl: "./svg-icon.component.scss",
 })
-export class SvgIconComponent implements OnInit {
+export class SvgIconComponent implements OnInit, OnChanges {
   @Input() iconName!: string;
   svgContent!: SafeHtml;
   @Input() viewBox!: string;
@@ -56,7 +62,14 @@ export class SvgIconComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["iconName"]) {
+      const svg = this.svgIcons[this.iconName] || "";
+      this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svg);
+    }
+  }
+
+  ngOnInit() {
     const svg = this.svgIcons[this.iconName] || "";
     this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svg);
   }

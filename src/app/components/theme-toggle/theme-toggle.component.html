@@ -7,7 +7,7 @@
     data-bs-toggle="dropdown"
     aria-label="Toggle theme (dark)">
     <app-svg-icon
-      iconName="darkTheme"
+      [iconName]="(currentIcon$ | async)!"
       viewBox="0 0 16 16"
       width="1em"
       height="1em"
@@ -23,7 +23,9 @@
         type="button"
         class="dropdown-item d-flex align-items-center"
         data-bs-theme-value="light"
-        aria-pressed="false">
+        [class.active]="isActiveTheme('light') | async"
+        [attr.aria-pressed]="isActiveTheme('light') | async"
+        (click)="setTheme('light')">
         <app-svg-icon
           iconName="lightTheme"
           viewBox="0 0 16 16"
@@ -38,7 +40,10 @@
           width="1em"
           height="1em"
           class="ms-auto"
-          svgClasses="bi d-none"></app-svg-icon>
+          svgClasses="bi"
+          [ngClass]="{
+            'd-none': !(isActiveTheme('light') | async)
+          }"></app-svg-icon>
       </button>
     </li>
     <li>
@@ -46,7 +51,9 @@
         type="button"
         class="dropdown-item d-flex align-items-center active"
         data-bs-theme-value="dark"
-        aria-pressed="true">
+        [class.active]="isActiveTheme('dark') | async"
+        [attr.aria-pressed]="isActiveTheme('dark') | async"
+        (click)="setTheme('dark')">
         <app-svg-icon
           iconName="darkTheme"
           viewBox="0 0 16 16"
@@ -61,7 +68,10 @@
           width="1em"
           height="1em"
           class="ms-auto"
-          svgClasses="bi"></app-svg-icon>
+          svgClasses="bi"
+          [ngClass]="{
+            'd-none': !(isActiveTheme('dark') | async)
+          }"></app-svg-icon>
       </button>
     </li>
     <li>
@@ -69,7 +79,9 @@
         type="button"
         class="dropdown-item d-flex align-items-center"
         data-bs-theme-value="auto"
-        aria-pressed="false">
+        [class.active]="isActiveTheme('auto') | async"
+        [attr.aria-pressed]="isActiveTheme('auto') | async"
+        (click)="setTheme('auto')">
         <app-svg-icon
           iconName="systemTheme"
           viewBox="0 0 16 16"
@@ -84,7 +96,10 @@
           width="1em"
           height="1em"
           class="ms-auto"
-          svgClasses="bi d-none"></app-svg-icon>
+          svgClasses="bi"
+          [ngClass]="{
+            'd-none': !(isActiveTheme('auto') | async)
+          }"></app-svg-icon>
       </button>
     </li>
   </ul>
