@@ -1,9 +1,15 @@
+import { map, Observable, startWith } from "rxjs";
+
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { Observable, map, startWith } from "rxjs";
+
+import { SvgIconComponent } from "../svg-icon/svg-icon.component";
 import { ThemeService } from "./theme.service";
 
 @Component({
   selector: "app-theme-toggle",
+  standalone: true,
+  imports: [CommonModule, SvgIconComponent],
   templateUrl: "./theme-toggle.component.html",
   styleUrl: "./theme-toggle.component.scss",
 })

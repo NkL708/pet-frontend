@@ -1,14 +1,10 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from "@angular/core";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
   selector: "app-svg-icon",
+  standalone: true,
+  imports: [],
   templateUrl: "./svg-icon.component.html",
   styleUrl: "./svg-icon.component.scss",
 })
