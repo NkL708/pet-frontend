@@ -14,7 +14,7 @@ RUN yarn ng build
 FROM build as dev
 USER root
 RUN apk update && apk upgrade && \
-    apk --no-cache add zsh git curl
+    apk --no-cache add zsh git curl grep
 USER nkl
 RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
     -t robbyrussell -p git -p zsh-autosuggestions -p zsh-completions && \
