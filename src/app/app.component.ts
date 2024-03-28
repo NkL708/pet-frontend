@@ -6,6 +6,7 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MainComponent } from "./components/main/main.component";
 import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: "app-root",
@@ -13,6 +14,8 @@ import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.com
   imports: [
     BrowserModule,
     NgbModule,
+    HttpClientModule,
+
     HeaderComponent,
     MainComponent,
     FooterComponent,

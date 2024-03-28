@@ -1,0 +1,14 @@
+.no-underline {
+  text-decoration: none;
+  color: var(--bs-card-color);
+  transition: color 0.3s ease;
+}
+
+.no-underline:hover {
+  text-decoration: none;
+  color: #545b62;
+}
+
+.card-body {
+  max-width: 934px;
+}

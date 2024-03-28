@@ -1,18 +1,23 @@
-<div class="card mb-3 news-digest-item">
-  <div class="card-body">
-    <h1 class="card-title">Сводка за 2024-03-16</h1>
-    <p class="card-text">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-      asperiores tenetur, quasi fugiat reprehenderit ea atque assumenda esse,
-      harum et nisi, soluta voluptas quo earum exercitationem. Repudiandae,
-      aperiam? Natus, consequatur? Alias est et distinctio. Ipsa omnis delectus
-      vitae mollitia accusamus eaque placeat sint fugiat natus facilis, libero
-      recusandae dolore temporibus cupiditate perferendis dolorum quasi dolor
-      aut. Sint, doloribus velit. Molestias!
-    </p>
-    <p class="card-text">
-      <small class="text-muted">Дата публикации: 2024-03-16</small>
-    </p>
-    <a href="#" class="btn btn-primary">Читать полностью</a>
+<div class="container card card-body mb-3">
+  <h3 class="card-title">{{ digest.title }}</h3>
+  <div
+    *ngFor="let article of digest.articles"
+    class="card mb-1 news-digest-item">
+    <div class="card-body">
+      <p class="card-text">
+        <a
+          href="{{ article.source_url }}"
+          class="card-link no-underline"
+          target="_blank">
+          {{ article.short_text | slice : 0 : 100
+          }}{{ article.short_text.length > 100 ? "..." : "" }}
+        </a>
+      </p>
+    </div>
   </div>
+  <p class="card-text">
+    <small class="text-muted">
+      Дата публикации: {{ digest.publication_date }}
+    </small>
+  </p>
 </div>
