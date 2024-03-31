@@ -21,6 +21,7 @@ export class ApiService {
   }
 
   getDigests(): Observable<Digest[]> {
+    throw new Error("Test Sentry error");
     return this.http.get<Digest[]>(`${this.baseUrl}digests/`);
   }
 
