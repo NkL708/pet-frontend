@@ -1,20 +1,19 @@
-FROM node:20-alpine as build
+FROM node:20-alpine as base
 WORKDIR /home/nkl/frontend/
 RUN deluser --remove-home node && \
     addgroup nkl && \
     adduser -D -G nkl -s /bin/zsh nkl && \
     chown -R nkl:nkl /home/nkl
 USER nkl
-COPY package*.json yarn.lock angular.json tsconfig*.json custom-webpack.config.js ./
+COPY package*.json yarn.lock angular.json tsconfig*.json ./
 RUN yarn install
 ENV PATH="./node_modules/.bin:$PATH"
 COPY --chown=nkl:nkl src ./src
-RUN yarn ng build
 
-FROM build as dev
+FROM base as dev
 USER root
 RUN apk update && apk upgrade && \
-    apk --no-cache add zsh git curl
+    apk --no-cache add zsh git curl grep
 USER nkl
 RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
     -t robbyrussell -p git -p zsh-autosuggestions -p zsh-completions && \
@@ -22,4 +21,9 @@ RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions
 
 EXPOSE 4200
-CMD ["yarn", "ng", "serve", "--host", "0.0.0.0", "--poll=2000"]
+ENTRYPOINT yarn ng serve --host 0.0.0.0 --poll=2000
+
+FROM base as prod
+ARG PRODUCTION
+ARG DSN
+RUN yarn ng build

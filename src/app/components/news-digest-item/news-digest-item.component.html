@@ -1,0 +1,23 @@
+<div class="container card card-body mb-3">
+  <h3 class="card-title">{{ digest.title }}</h3>
+  <div
+    *ngFor="let article of digest.articles"
+    class="card mb-1 news-digest-item">
+    <div class="card-body">
+      <p class="card-text">
+        <a
+          href="{{ article.source_url }}"
+          class="card-link no-underline"
+          target="_blank">
+          {{ article.short_text | slice : 0 : 100
+          }}{{ article.short_text.length > 100 ? "..." : "" }}
+        </a>
+      </p>
+    </div>
+  </div>
+  <p class="card-text">
+    <small class="text-muted">
+      Дата публикации: {{ digest.publication_date }}
+    </small>
+  </p>
+</div>

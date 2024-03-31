@@ -1,5 +1,7 @@
 declare let window: any;
 
 export const environment = {
-    debug: window.DEBUG === 'true'
+  production: false,
+  apiUrl: "http://localhost:8000/api/",
+  dsn: undefined,
 };
