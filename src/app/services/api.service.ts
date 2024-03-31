@@ -8,23 +8,23 @@ import { Article, Digest } from "../models/digest.model";
   providedIn: "root",
 })
 export class ApiService {
-  private baseUrl = "http://localhost:8000/api";
+  private baseUrl = "/api/";
 
   constructor(private http: HttpClient) {}
 
   getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(`${this.baseUrl}/articles/`);
+    return this.http.get<Article[]>(`${this.baseUrl}articles/`);
   }
 
   getArticle(articleId: number): Observable<Article> {
-    return this.http.get<Article>(`${this.baseUrl}/articles/${articleId}`);
+    return this.http.get<Article>(`${this.baseUrl}articles/${articleId}`);
   }
 
   getDigests(): Observable<Digest[]> {
-    return this.http.get<Digest[]>(`${this.baseUrl}/digests/`);
+    return this.http.get<Digest[]>(`${this.baseUrl}digests/`);
   }
 
   getDigest(digestId: number): Observable<Digest> {
-    return this.http.get<Digest>(`${this.baseUrl}/digests/${digestId}`);
+    return this.http.get<Digest>(`${this.baseUrl}digests/${digestId}`);
   }
 }
