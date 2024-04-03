@@ -24,4 +24,5 @@ ENTRYPOINT yarn ng serve --host 0.0.0.0 --poll=2000
 
 FROM base as prod
 ARG SERVER_IP
+ARG COMMIT_SHA
 RUN yarn ng build
