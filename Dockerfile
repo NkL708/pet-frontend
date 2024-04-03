@@ -5,7 +5,7 @@ RUN deluser --remove-home node && \
     adduser -D -G nkl -s /bin/zsh nkl && \
     chown -R nkl:nkl /home/nkl
 USER nkl
-COPY package*.json yarn.lock angular.json tsconfig*.json ./
+COPY package*.json yarn.lock angular.json tsconfig*.json custom-webpack.config.ts ./
 RUN yarn install
 ENV PATH="./node_modules/.bin:$PATH"
 COPY --chown=nkl:nkl src ./src
@@ -19,11 +19,9 @@ RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download
     -t robbyrussell -p git -p zsh-autosuggestions -p zsh-completions && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions
-
 EXPOSE 4200
 ENTRYPOINT yarn ng serve --host 0.0.0.0 --poll=2000
 
 FROM base as prod
-ARG PRODUCTION
-ARG DSN
+ARG SERVER_IP
 RUN yarn ng build

@@ -16,9 +16,9 @@ import { MainComponent } from "./app/components/main/main.component";
 if (!environment.production) {
   Sentry.init({
     dsn: environment.dsn,
-    release: "7115ede",
+    release: environment.release,
     integrations: [Sentry.browserTracingIntegration()],
-    tracePropagationTargets: ["31.207.45.145"],
+    tracePropagationTargets: [environment.serverIp],
     tracesSampleRate: 1.0,
   });
   enableProdMode();
