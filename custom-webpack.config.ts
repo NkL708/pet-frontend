@@ -1,5 +1,5 @@
 const webpack = require("webpack");
 
 module.exports = {
-  plugins: [new webpack.EnvironmentPlugin(["SERVER_IP", "COMMIT_SHA"])],
+  plugins: [new webpack.EnvironmentPlugin(["COMMIT_SHA", "SENTRY_DSN"])],
 };

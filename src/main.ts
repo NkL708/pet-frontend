@@ -13,12 +13,11 @@ import { environment } from "./environments/environment";
 import { AppComponent } from "./app/app.component";
 import { MainComponent } from "./app/components/main/main.component";
 
-if (!environment.production) {
+if (environment.production) {
   Sentry.init({
     dsn: environment.dsn,
     release: environment.release,
     integrations: [Sentry.browserTracingIntegration()],
-    tracePropagationTargets: [environment.serverIp],
     tracesSampleRate: 1.0,
   });
   enableProdMode();

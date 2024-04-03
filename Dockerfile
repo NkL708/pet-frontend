@@ -23,6 +23,19 @@ EXPOSE 4200
 ENTRYPOINT yarn ng serve --host 0.0.0.0 --poll=2000
 
 FROM base as prod
-ARG SERVER_IP
 ARG COMMIT_SHA
-RUN yarn ng build
+ARG BUILD_SOURCE_MAP
+ARG SENTRY_AUTH_TOKEN
+ARG SENTRY_ORG
+ARG SENTRY_PROJECT
+ARG SENTRY_DSN
+RUN set -e; \
+    if [ "$BUILD_SOURCE_MAP" = "true" ]; then \
+    yarn ng build --source-map; \
+    sentry-cli releases new "$COMMIT_SHA" --project "$SENTRY_PROJECT" && \
+    sentry-cli releases files "$COMMIT_SHA" upload-sourcemaps ./dist/frontend/ --url-prefix '~/' && \
+    sentry-cli releases finalize "$COMMIT_SHA"; \
+    find ./dist/frontend -name '*.map' -type f -delete; \
+    else \
+    yarn ng build; \
+    fi
