@@ -1,7 +1,7 @@
 import { HttpClientModule } from "@angular/common/http";
 import {
-  ErrorHandler,
   enableProdMode,
+  ErrorHandler,
   importProvidersFrom,
 } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
@@ -19,6 +19,7 @@ if (environment.production) {
     release: environment.release,
     integrations: [Sentry.browserTracingIntegration()],
     tracesSampleRate: 1.0,
+    ignoreErrors: [/NG04002/],
   });
   enableProdMode();
 }
