@@ -1,24 +1,24 @@
 {
-	"name": "Angular dev container",
-	"dockerComposeFile": "../docker-compose.dev.yml",
-	"service": "frontend",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-azuretools.vscode-docker",
-				"Angular.ng-template",
-				"johnpapa.Angular2",
-				"esbenp.prettier-vscode",
-				"dbaeumer.vscode-eslint",
-				"christian-kohler.path-intellisense",
-				"ms-vscode.vscode-typescript-next",
-				"xabikos.JavaScriptSnippets",
-				"zh9528.file-size",
-				"DotJoshJohnson.xml",
-				"mike-co.import-sorter"
-			]
-		}
-	},
-	"shutdownAction": "none",
-	"workspaceFolder": "/home/nkl/frontend"
+  "name": "Angular dev container",
+  "dockerComposeFile": "../docker-compose.dev.yml",
+  "service": "frontend",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "Angular.ng-template",
+        "johnpapa.Angular2",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "christian-kohler.path-intellisense",
+        "ms-vscode.vscode-typescript-next",
+        "xabikos.JavaScriptSnippets",
+        "zh9528.file-size",
+        "DotJoshJohnson.xml",
+        "mike-co.import-sorter"
+      ]
+    }
+  },
+  "shutdownAction": "none",
+  "workspaceFolder": "/home/nkl/frontend"
 }
