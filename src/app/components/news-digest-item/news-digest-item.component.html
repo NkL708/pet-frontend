@@ -9,8 +9,7 @@
           href="{{ article.source_url }}"
           class="card-link no-underline"
           target="_blank">
-          {{ article.short_text | slice : 0 : 100
-          }}{{ article.short_text.length > 100 ? "..." : "" }}
+          {{ article.short_text }}
         </a>
       </p>
     </div>
