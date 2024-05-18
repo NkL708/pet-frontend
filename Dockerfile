@@ -20,7 +20,6 @@ RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions
 EXPOSE 4200
-ENTRYPOINT yarn ng serve --host 0.0.0.0 --poll=2000
 
 FROM base as prod
 ARG COMMIT_SHA
