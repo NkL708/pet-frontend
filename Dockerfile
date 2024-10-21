@@ -1,4 +1,4 @@
-FROM node:20-alpine as base
+FROM node:20-alpine AS base
 WORKDIR /home/nkl/frontend/
 RUN deluser --remove-home node && \
     addgroup nkl && \
@@ -10,7 +10,7 @@ RUN yarn install
 ENV PATH="./node_modules/.bin:$PATH"
 COPY --chown=nkl:nkl src ./src
 
-FROM base as dev
+FROM base AS dev
 USER root
 RUN apk update && apk upgrade && \
     apk --no-cache add zsh git curl grep
@@ -21,7 +21,7 @@ RUN zsh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions
 EXPOSE 4200
 
-FROM base as prod
+FROM base AS prod
 ARG COMMIT_SHA
 ARG BUILD_SOURCE_MAP
 ARG SENTRY_AUTH_TOKEN
