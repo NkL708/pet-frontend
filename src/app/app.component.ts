@@ -5,8 +5,6 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
-import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
-
 import { MainComponent } from "./components/main/main.component";
 
 @Component({
@@ -20,7 +18,6 @@ import { MainComponent } from "./components/main/main.component";
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    ThemeToggleComponent,
   ],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
