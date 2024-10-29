@@ -1,7 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -12,8 +10,6 @@ import { MainComponent } from "./components/main/main.component";
   standalone: true,
   imports: [
     CommonModule,
-    NgbModule,
-    HttpClientModule,
 
     HeaderComponent,
     MainComponent,

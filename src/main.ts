@@ -1,4 +1,4 @@
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient } from "@angular/common/http";
 import {
   enableProdMode,
   ErrorHandler,
@@ -6,7 +6,7 @@ import {
 } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
-import * as Sentry from "@sentry/angular-ivy";
+import * as Sentry from "@sentry/angular";
 
 import { environment } from "./environments/environment";
 
@@ -29,7 +29,7 @@ const routes: Routes = [{ path: "", component: MainComponent }];
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(RouterModule.forRoot(routes)),
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(),
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({ showDialog: false }),

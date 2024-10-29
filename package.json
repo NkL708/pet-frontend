@@ -37,4 +37,6 @@
   "devDependencies": {
     "@types/bootstrap": "^5"
   },
+  "nodeLinker": "pnp",
+  "packageManager": "yarn@4.5.1"
 }
