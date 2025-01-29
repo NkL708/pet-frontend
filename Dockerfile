@@ -11,9 +11,9 @@ FROM base AS dev
 USER root
 RUN apk --no-cache add zsh git curl grep
 USER nkl
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.1/zsh-in-docker.sh)" -- \
-    -t robbyrussell -p git -p https://github.com/zsh-users/zsh-autosuggestions
-COPY package*.json yarn.lock angular.json tsconfig*.json custom-webpack.config.ts ./
+COPY setup_dev_env.sh /home/nkl/setup_dev_env.sh
+RUN sh /home/nkl/setup_dev_env.sh
+COPY frontend/package*.json frontend/yarn.lock frontend/angular.json frontend/tsconfig*.json frontend/custom-webpack.config.ts ./
 RUN yarn install
 EXPOSE 4200
 
@@ -24,8 +24,8 @@ ARG SENTRY_AUTH_TOKEN
 ARG SENTRY_ORG
 ARG SENTRY_PROJECT
 ARG SENTRY_DSN
-COPY package*.json yarn.lock angular.json tsconfig*.json custom-webpack.config.ts ./
-COPY src ./src
+COPY frontend/package*.json frontend/yarn.lock frontend/angular.json frontend/tsconfig*.json frontend/custom-webpack.config.ts ./
+COPY frontend/src ./src
 RUN yarn workspaces focus --production
 RUN set -e; \
     if [ "$BUILD_SOURCE_MAP" = "true" ]; then \
